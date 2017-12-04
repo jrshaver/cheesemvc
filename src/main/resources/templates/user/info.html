@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body>
+
+<div class="well" id="b-override-container">
+    <div class="page-header">
+        <h1 th:text="${title}" id="b-override-title"></h1>
+
+        <nav th:replace="fragments::nav"></nav>
+    </div>
+
+    <div class="container">
+
+        <p th:text="${'Username: ' + user.getUsername()}"></p>
+        <p th:text="${'Email: ' + user.getEmail()}"></p>
+        <p th:text="${'Date Joined: ' + user.getDateJoined()}"></p>
+
+    </div>
+</div>
+
+</body>
+</html>

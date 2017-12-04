@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}">Title</title>
-</head>
+<head th:replace="fragments::head"></head>
 <body>
 
-    <h1 th:text="${title}"></h1>
+<div class="well" id="b-override-container">
+    <div class="page-header">
+        <h1 th:text="${title}" id="b-override-title"></h1>
 
-    <p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
+        <nav th:replace="fragments::nav"></nav>
+    </div>
 
-    <a href="/cheese/add">Add Cheese</a>
-    <ul>
-        <li th:each="cheese : ${cheeses}" th:text="${cheese}"></li>
-    </ul>
+<div class="container">
+
+<p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
+
+<ul th:each="cheese : ${cheeses}" class="list-group">
+    <li class="list-group-item" th:text="${cheese.getCheeseName()}"></li>
+    <li class="list-group-item" th:text="${cheese.getDescription()}"></li>
+    <li class="list-group-item" th:text="${cheese.CheeseType.getName()}"></li>
+    <li class="list-group-item" th:text="${cheese.getCheeseRating()}"></li>
+    <li class="list-group-item"><a th:href="@{'/cheese/edit/' + ${cheese.getCheeseId()}}">Edit cheese</a></li>
+    <form method="POST" class="edit-buttons">
+        <input type="hidden" th:value="${cheese.getCheeseName()}" name="cheeseNameRemove" />
+        <button type="submit" class="btn btn-default">Remove cheese</button>
+    </form>
+
+
+</ul>
+</div>
+</div>
 
 </body>
 </html>

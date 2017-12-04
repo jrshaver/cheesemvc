@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body>
+
+<div class="well" id="b-override-container">
+    <div class="page-header">
+        <h1 th:text="${title}" id="b-override-title"></h1>
+
+        <nav th:replace="fragments::nav"></nav>
+    </div>
+
+    <div class="container">
+
+    <p th:unless="${users} and ${users.size()}">no users :(</p>
+
+    <ul th:each="user : ${users}">
+        <li><a th:href="@{'/user/' + ${user.getUserId()}}"><span th:text="${user.getUsername()}"></span></a></li>
+    </ul>
+
+    </div>
+</div>
+
+</body>
+</html>

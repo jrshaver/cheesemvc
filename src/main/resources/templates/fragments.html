@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+
+    <span th:fragment="nav">
+        <ul class="nav nav-tabs">
+            <li><a href="/cheese">List cheese</a></li>
+            <li><a href="/cheese/add">Add cheese</a></li>
+            <li><a href="/user">List of Users</a></li>
+            <li><a href="/user/add">Sign up</a></li>
+        </ul>
+    </span>
+
+</body>
+</html>

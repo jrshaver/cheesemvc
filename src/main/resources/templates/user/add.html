@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body>
+
+<div class="well" id="b-override-container">
+    <div class="page-header">
+        <h1 th:text="${title}" id="b-override-title"></h1>
+
+        <nav th:replace="fragments::nav"></nav>
+    </div>
+
+    <div class="container">
+
+    <form method="POST" th:object="${user}">
+        <div class="form-group row">
+            <label for="username" class="col-sm-2 col-form-label">Username: </label>
+            <div class="col-sm-10">
+                <input type="text" th:field="*{username}" th:value="${username}" id="username" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email: </label>
+            <div class="col-sm-10">
+                <input type="email" th:field="*{email}" th:value="${email}" id="email" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password: </label>
+            <div class="col-sm-10">
+                <input type="password" th:field="*{password}" id="password" />
+                <span class="error" th:text="${pwError}"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="verify" class="col-sm-2 col-form-label">Verify Password: </label>
+            <div class="col-sm-10">
+                <input type="password" name="verify" id="verify" />
+            </div>
+        </div>
+        <input type="submit" value="Sign up" />
+    </form>
+
+    </div>
+</div>
+
+</body>
+</html>

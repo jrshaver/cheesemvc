@@ -1,0 +1,19 @@
+.error {
+color:red;
+font-weight:bold;
+}
+
+#b-override-container {
+padding:0px;
+border-color:#000000;
+width:98%;
+margin:.5em auto;
+}
+
+#b-override-title {
+padding:.2em;
+}
+
+.edit-buttons {
+margin:10px 0px;
+}
