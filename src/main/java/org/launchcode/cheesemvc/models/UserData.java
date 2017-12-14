@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class UserData {
 
-    public static ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<User> users = new ArrayList<>();
 
     public static void addUser(User newUser) {
         newUser.setDateJoined(new Date());

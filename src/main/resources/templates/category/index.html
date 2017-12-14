@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+<body>
+
+<div class="well" id="b-override-container">
+    <div class="page-header">
+        <h1 th:text="${title}" id="b-override-title"></h1>
+
+        <nav th:replace="fragments::nav"></nav>
+    </div>
+
+    <div class="container">
+
+        <ul th:each="category : ${categoryList}">
+            <li th:text="${category.getName()}"></li>
+        </ul>
+
+    </div>
+</div>
+
+</body>
+</html>

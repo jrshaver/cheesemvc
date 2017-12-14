@@ -27,9 +27,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label th:for="cheeseType" class="col-sm-2 col-form-label">Type of Cheese:</label>
-                <select class="col-sm-1" id="cheeseType" style="margin-left:15px">
-                    <option th:each="cheeseType : ${cheeseTypes}" th:text="${cheeseType.getName()}" th:value="${cheeseType}"></option>
+                <label th:for="category" class="col-sm-2 col-form-label">Type of Cheese:</label>
+                <select class="col-sm-1" th:field="*{category}" id="category" style="margin-left:15px">
+                    <option th:each="category : ${categories}" th:text="${category.getName()}" th:value="${category.getId()}"></option>
                 </select>
 
                 <span style="float:right; margin-right:20px">
@@ -69,7 +69,7 @@
 
             <div class="form-group row" style="float:right">
                 <div class="offset-sm-2 col-sm-10">
-                    <input type="hidden" th:value="${cheese.getCheeseId()}" name="cheeseId" />
+                    <input type="hidden" th:value="${id}" name="id" />
                     <button type="submit" class="btn btn-primary">Submit Cheese</button>
                 </div>
             </div>

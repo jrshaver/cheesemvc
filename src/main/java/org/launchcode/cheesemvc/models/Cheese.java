@@ -1,27 +1,42 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity(name = "Cheese")
+@Table(name = "cheese")
 public class Cheese {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
     @Size(min=3, max=15, message = "Cheese's name must be between 3-15 characters long.")
-    String cheeseName;
+    private String cheeseName;
 
     @Size(min=1, message = "Please enter a description for your cheese.")
-    String description;
+    private String description;
 
-    CheeseType cheeseType;
+    private String cheeseRating;
 
-    @Size(min=1, max=5)
-    String cheeseRating;
+    @ManyToOne
+    private Category category;
 
-    int cheeseId;
+    @ManyToMany
+    private Set<Menu> menus = new HashSet<>();
 
-    static int nextId = 1;
+    public Cheese(String cheeseName, String description) {
+        this.cheeseName = cheeseName;
+        this.description = description;
+    }
 
     public Cheese() {
-        cheeseId = nextId;
-        nextId++;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCheeseName() {
@@ -40,22 +55,6 @@ public class Cheese {
         description = aDescription;
     }
 
-    public CheeseType getCheeseType() {
-        return cheeseType;
-    }
-
-    public void setCheeseType(CheeseType cheeseType) {
-        this.cheeseType = cheeseType;
-    }
-
-    public int getCheeseId() {
-        return cheeseId;
-    }
-
-    public void setCheeseId(int cheeseId) {
-        this.cheeseId = cheeseId;
-    }
-
     public String getCheeseRating() {
         return cheeseRating;
     }
@@ -63,4 +62,17 @@ public class Cheese {
     public void setCheeseRating(String cheeseRating) {
         this.cheeseRating = cheeseRating;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Menu> getMenus() {
+        return menus;
+    }
+
 }

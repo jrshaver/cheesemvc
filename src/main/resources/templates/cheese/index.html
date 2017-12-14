@@ -17,11 +17,11 @@
 <ul th:each="cheese : ${cheeses}" class="list-group">
     <li class="list-group-item" th:text="${cheese.getCheeseName()}"></li>
     <li class="list-group-item" th:text="${cheese.getDescription()}"></li>
-    <li class="list-group-item" th:text="${cheese.CheeseType.getName()}"></li>
+    <li class="list-group-item" th:text="${cheese.category.getName()}"></li>
     <li class="list-group-item" th:text="${cheese.getCheeseRating()}"></li>
-    <li class="list-group-item"><a th:href="@{'/cheese/edit/' + ${cheese.getCheeseId()}}">Edit cheese</a></li>
+    <li class="list-group-item"><a th:href="@{'/cheese/edit/' + ${cheese.getId()}}">Edit cheese</a></li>
     <form method="POST" class="edit-buttons">
-        <input type="hidden" th:value="${cheese.getCheeseName()}" name="cheeseNameRemove" />
+        <input type="hidden" th:value="${cheese.id}" name="id" />
         <button type="submit" class="btn btn-default">Remove cheese</button>
     </form>
 

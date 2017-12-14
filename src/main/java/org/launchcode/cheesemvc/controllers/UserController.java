@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -30,32 +32,27 @@ public class UserController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String addDisplay(Model model, @ModelAttribute User user) {
+    public String addDisplay(Model model) {
         model.addAttribute("title", "Sign up");
+        model.addAttribute(new User());
+
         return "user/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addProcess(Model model, @ModelAttribute User user, String verify, Errors errors) {
+    public String addProcess(Model model, @ModelAttribute @Valid User user, Errors errors) {
 
+        //email and username not valid
         if (errors.hasErrors()) {
             model.addAttribute("title", "Sign up");
-            model.addAttribute("username", user.getUsername());
-            model.addAttribute("email", user.getEmail());
+            model.addAttribute(user);
             return "user/add";
         }
 
-        if (user.getPassword().equals(verify)) {
-            model.addAttribute("username", user.getUsername());
+        else {
             UserData.addUser(user);
             return "redirect:";
-        }
-        else {
-            model.addAttribute("title", "Sign up");
-            model.addAttribute("username", user.getUsername());
-            model.addAttribute("email", user.getEmail());
-            model.addAttribute("pwError", "Your passwords did not match. Please try again.");
-            return "user/add";
+
         }
 
     }
